@@ -1,0 +1,516 @@
+   <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> قطرة الامل| تبرع بالدم وتبرّع بالمال</title>
+  <meta name="description" content="منصة إنسانية للتبرع بالدم وجمع التبرعات المالية للحالات المستعجلة والمبادرات الصحية." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;             /* slate-900 */
+      --card: #111827;           /* gray-900 */
+      --muted: #94a3b8;          /* slate-400 */
+      --text: #e5e7eb;           /* gray-200 */
+      --primary: #ef4444;        /* red-500 */
+      --primary-600: #dc2626;    /* red-600 */
+      --accent: #22c55e;         /* green-500 */
+      --ring: rgba(239, 68, 68, .35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 80% -10%, rgba(239,68,68,.08), transparent 60%),
+                  radial-gradient(1000px 700px at -20% 10%, rgba(34,197,94,.07), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1100px, 92%); margin-inline: auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(15,23,42,.6);
+      border-bottom: 1px solid rgba(148,163,184,.15);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .3px; }
+    .logo {
+      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+      background: conic-gradient(from 200deg, var(--primary), var(--accent)); box-shadow: var(--shadow);
+      color: #fff; font-weight: 800;
+    }
+    .nav a.cta { background: var(--primary); padding: 10px 16px; border-radius: 12px; font-weight: 700; box-shadow: var(--shadow); }
+    .nav a.cta:hover { background: var(--primary-600); }
+
+    /* Hero */
+    .hero { padding: 56px 0 26px; text-align: center; }
+    .hero h1 { font-size: clamp(28px, 3.6vw, 44px); margin: 10px 0 6px; line-height: 1.2; }
+    .hero p { color: var(--muted); margin: 0 auto; width: min(760px, 94%); }
+
+    .cta-row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; width: min(540px, 100%); margin: 22px auto 0; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+      background: #161c2e; border: 1px solid rgba(255,255,255,.08); color: var(--text);
+      padding: 14px 18px; border-radius: 14px; font-weight: 700; transition: .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.primary { background: var(--primary); border-color: transparent; }
+    .btn.primary:hover { background: var(--primary-600); }
+
+    /* Grid cards */
+    .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); margin: 30px 0 18px; }
+    .card { grid-column: span 12; background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+            border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 8px; font-size: 20px; }
+    .muted { color: var(--muted); }
+
+    .card.inline { display: grid; gap: 14px; grid-template-columns: 1fr; align-items: start; }
+
+    /* Forms */
+    form { display: grid; gap: 12px; }
+    label { font-weight: 600; }
+    input, select, textarea {
+      width: 100%; padding: 12px 14px; border-radius: 12px; background: #0b1223; color: var(--text);
+      border: 1px solid rgba(255,255,255,.08); outline: none; transition: .2s; font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); }
+    textarea { min-height: 110px; resize: vertical; }
+    .row { display: grid; gap: 12px; grid-template-columns: 1fr; }
+
+    .help { font-size: 13px; color: var(--muted); }
+    .hint { font-size: 13px; color: #fef3c7; background: #7c2d12; padding: 6px 10px; border-radius: 10px; display: inline-block; }
+
+    /* Sections */
+    section { padding: 10px 0; }
+    .section-title { font-size: 22px; margin: 12px 0; }
+
+    /* FAQ */
+    details { background: #0b1223; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 12px 14px; }
+    details + details { margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 700; }
+
+    /* Footer */
+    footer { margin-top: 30px; padding: 24px 0 40px; color: var(--muted); font-size: 14px; border-top: 1px solid rgba(255,255,255,.08); }
+
+    /* Responsive */
+    @media (min-width: 640px) {
+      .card.inline { grid-template-columns: 1.2fr 1fr; }
+      .row.two { grid-template-columns: 1fr 1fr; }
+      .row.three { grid-template-columns: 1fr 1fr 1fr; }
+      .card.span-6 { grid-column: span 6; }
+      .card.span-8 { grid-column: span 8; }
+      .card.span-4 { grid-column: span 4; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">❤</div>
+        <span>قطرة الامل </span>
+      </div>
+      <nav>
+ <div class="cta-row">
+  <a href="#blood" class="btn btn-primary">أنا جاهز للتبرّع بالدم</a>
+  <a href="#charities" class="btn btn-secondary">أريد التبرّع بالمال</a>
+  <a href="#blood" class="btn btn-accent">أبحث عن متبرّع</a>
+</div>
+
+ 
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero container">
+    <h1>      قال الله عزوجل
+     <h1>   "ومن احياها فكانما احيا الناس جميعا "
+    <h1>   كل قطرة تصنع فرقًا، وكل مساهمة تنقذ حياة</h1>
+    <p>صفحة إنسانية تجمع بين <strong>التبرع بالدم</strong> لمساعدة الحالات المستعجلة، و<strong>ا </strong> لدعم العلاج والمبادرات الصحية.
+    يمكنك التسجيل كمتبرّع، طلب دم عاجل، أو المساهمة ماليًا.</p>
+
+    <div class="cta-row">
+      <a class="btn primary" href="#blood">أنا جاهز للتبرّع بالدم</a>
+      <a class="btn" href="#charities">أريد التبرّع بالمال</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="grid">
+      <!-- Why donate -->
+      <article class="card span-8">
+        <h3>لماذا التبرع بالدم؟</h3>
+        <p class="muted">كل تبرّع يمكن أن ينقذ حتى <strong>ثلاثة أشخاص</strong>. نحتاج متبرعين من كل الفصائل، خصوصًا O− و O+.
+        التبرع آمن ويستغرق عادة 15–20 دقيقة.</p>
+        <ul>
+          <li>🩸 يساعد مرضى العمليات والحوادث وفقر الدم.</li>
+          <li>🛡️ فحص مجاني لضغط الدم وفصيلة الدم وبعض الأمراض.</li>
+          <li>🔁 يمكن التبرع كل 8 أسابيع تقريبًا للرجال، وكل 12 أسبوعًا للنساء (توصيات عامة).</li>
+        </ul>
+        <p class="help">* الاستشارات الطبية ضرورية قبل التبرع. المعلومات هنا عامة وليست بديلاً عن الطبيب.</p>
+      </article>
+
+      <!-- Quick stats -->
+       
+    <aside class="card span-4">
+  <h3>تعليمات للموقع </h3>
+  <p class="muted"> ⚠️من الافضل تسجل بالعربية لانو الناس الذين سيتعملون هذا الموقع جزائرين ⚠️ </p>
+  <div>
+  <div class="hint" style="margin-bottom:12px;">
+    ادعو لأمي و ابي فقد تعبو في تربيتي
+  </div>
+  <div class="hint">
+     هذا الموقع صدقة عني وعن اخوتي و كل من استعمله فنشره رحمك الله اجري واجرك واحد
+  </div>
+  <div class="hint" id="donorCount" style="font-size:18px; text-align:center; margin-top:12px;">
+  عدد المتبرعين: <span id="donorNumber">0</span>
+  </div>
+
+</div>
+
+  </div>
+</aside>
+
+
+
+       
+ <!-- Blood donation section -->
+      <section id="blood" class="card inline span-8">
+        <div>
+          <h3>التبرع بالدم</h3>
+          <p class="muted">سجّل بياناتك ليتم التواصل معك عند الحاجة، أو ابحث عن متبرّعين بالقرب منك.</p>
+
+          <form id="donorForm">
+            <div class="row two">
+              <div>
+                <label for="name">الاسم الكامل</label>
+                <input id="name" name="name" required placeholder="مثال: محمد بن أحمد" />
+              </div>
+              <div>
+                <label for="phone">رقم الهاتف</label>
+                <input id="phone" name="phone" inputmode="tel" pattern="^[0-9+\-()\s]{8,}$" required placeholder="مثال: 0555 12 34 56" />
+                <div class="help">نستخدمه للتواصل العاجل فقط.</div>
+              </div>
+            </div>
+
+            <div class="row two">
+              <div>
+                <label for="bloodType">فصيلة الدم</label>
+                <select id="bloodType" name="bloodType" required>
+                  <option value="">اختَر…</option>
+                  <option>O−</option><option>O+</option>
+                  <option>A−</option><option>A+</option>
+                  <option>B−</option><option>B+</option>
+                  <option>AB−</option><option>AB+</option>
+                </select>
+              </div>
+              <div>
+                <label for="city">المدينة / الولاية</label>
+                <input id="city" name="city" required placeholder="مثال: الجزائر، وهران، قسنطينة…" />
+              </div>
+            </div>
+
+            <div>
+              <label for="availability">التوفر</label>
+              <select id="availability" name="availability" required>
+                <option value="">اختَر…</option>
+                <option>متاح في أي وقت</option>
+                <option>أيام الأسبوع فقط</option>
+                <option>نهاية الأسبوع فقط</option>
+                <option>مساءً</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="notes">ملاحظات (اختياري)</label>
+              <textarea id="notes" name="notes" placeholder="مثال: سبق وتبرعت… لدي وسيلة نقل…"></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">تسجيل كمتبرّع</button>
+          </form>
+        </div>
+
+        <aside>
+          <h4 class="section-title">بحث سريع عن متبرّع</h4>
+          <form id="searchForm">
+            <div class="row">
+              <label for="needBloodType">الفصيلة المطلوبة</label>
+              <select id="needBloodType" required>
+                <option value="">اختَر…</option>
+                <option>O−</option><option>O+</option>
+                <option>A−</option><option>A+</option>
+                <option>B−</option><option>B+</option>
+                <option>AB−</option><option>AB+</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="needCity">المدينة</label>
+              <input id="needCity" placeholder="مثال: البليدة" required />
+            </div>
+            <button class="btn" type="submit">ابحث عن متبرّعين</button>
+          </form>
+
+           <div id="results" class="help" style="margin-top:10px"></div>
+
+        </aside>
+      </section>
+<script>
+  // معالجة نموذج المتبرعين بالدم - إرسال إلى Google Sheets
+  document.getElementById('donorForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target;
+      openModal('جاري تسجيل بياناتك…'); // تظهر النافذة مباشرة
+
+    const data = {
+       full_name: f.name.value.trim(),
+      phone: f.phone.value.trim(),
+      blood_type : f.bloodType.value,
+      wilaya: f.city.value.trim(),
+      availability: f.availability.value,
+      notes: f.notes.value.trim(),
+    };
+
+    try {
+      const res = await fetch(" https://script.google.com/macros/s/AKfycbyaG-XqQF26ERgL9VCwxHi_AoUWHI1sWq4YW5IZDGabY6q6h-rcdl_SNmrrEOaLP60rUw/exec", {
+        method: "POST",
+        body: new URLSearchParams(data)
+      });
+      const result = await res.json();
+
+      if(result.status === "success"){
+
+        f.reset();
+      openModal('شكراً لتسجيلك كمتبرّع بالدم. سنقوم بالتواصل عند الحاجة في منطقتك.');
+      } else {
+        alert("⚠️ حصل خطأ: " + result.message);
+      }
+    } catch (err) {
+      alert("❌ فشل الاتصال بالخادم");
+    }
+  });
+</script>
+
+   <!-- قسم الجمعيات الخيرية -->
+<section id="charities" class="card inline span-8" style="margin-top:4ذ0px;">
+  <div>
+    <h3>🌟 جمعيات خيرية للتبرع بالمال</h3>
+    <p class="muted">يمكنك دعم عبر الجمعيات التالية مباشرة:</p>
+
+ <div style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap; text-align:center; margin-top:20px;">
+  
+  <!-- كافل اليتيم -->
+  <a href="https://kafilyatim.dz/ar/" target="_blank" 
+     style="text-decoration:none; color:#dc0c0c;">
+    <div style="width:90px; height:90px; background:#f8f9fa; border-radius:50%;
+                display:flex; align-items:center; justify-content:center;
+                box-shadow:0 4px 10px rgba(0,0,0,0.15); transition:0.3s;">
+      <img src="kafil.jpg" alt="كافل اليتيم" style="max-width:60%; max-height:60%;">
+    </div>
+    <p style="margin-top:10px; font-size:14px;">كافل اليتيم</p>
+  </a>
+
+  <!-- هلال الاحمر -->
+  <a href="https://cra.dz/" target="_blank" 
+     style="text-decoration:none; color:#dc0c0c;">
+    <div style="width:90px; height:90px; background:#f8f9fa; border-radius:50%;
+                display:flex; align-items:center; justify-content:center;
+                box-shadow:0 4px 10px rgba(0,0,0,0.15); transition:0.3s;">
+      <img src="hela.jpg" alt="هلال الاحمر" style="max-width:60%; max-height:60%;">
+    </div>
+    <p style="margin-top:10px; font-size:14px;">هلال الاحمر</p>
+  </a>
+
+  <!-- Algerian Human -->
+  <a href="https://algerian-human.org/" target="_blank" 
+     style="text-decoration:none; color:#dc0c0c;">
+    <div style="width:90px; height:90px; background:#f8f9fa; border-radius:50%;
+                display:flex; align-items:center; justify-content:center;
+                box-shadow:0 4px 10px rgba(0,0,0,0.15); transition:0.3s;">
+      <img src="salgerian-human.jpg" alt="Algerian Human" style="max-width:60%; max-height:60%;">
+    </div>
+    <p style="margin-top:10px; font-size:14px;">Algerian Human</p>
+  </a>
+
+  <!-- جمعية البركة -->
+  <a href="https://www.elbaraka.org" target="_blank" 
+     style="text-decoration:none; color:#ff0000;">
+    <div style="width:90px; height:90px; background:#f8f9fa; border-radius:50%;
+                display:flex; align-items:center; justify-content:center;
+                box-shadow:0 4px 10px rgba(0,0,0,0.15); transition:0.3s;">
+      <img src="baraka.jpg" alt="البركة" style="max-width:60%; max-height:60%;">
+    </div>
+    <p style="margin-top:10px; font-size:14px;">جمعية البركة</p>
+  </a>
+
+</div>
+
+    
+    
+  </div>
+</section>
+
+
+
+      <!-- FAQ -->
+      <section class="card span-8">
+        <h3>الأسئلة الشائعة</h3>
+        <details>
+          <summary>من يستطيع التبرع بالدم؟</summary>
+          <p>عادة ما يُسمح للبالغين الأصحاء بالتبرع إذا توفرت الشروط الطبية العامة (الوزن، الهيموغلوبين، عدم وجود أمراض معدية…). راجع مركز الدم المحلي للتفاصيل الدقيقة.</p>
+        </details>
+        <details>
+          <summary>هل التبرع آمن؟</summary>
+          <p>نعم، تُستخدم أدوات معقمة لمرة واحدة ويقوم طاقم طبي بالإشراف على العملية.</p>
+        </details>
+        <details>
+          <summary>كيف يتم استخدام التبرعات المالية؟</summary>
+          <p>تُصرف على الحالات المستعجلة، شراء المستلزمات الطبية، ودعم نقل المرضى وفق سياسة شفافية مُعلنة.</p>
+        </details>
+      </section>
+
+      <!-- Contact / Footer CTA -->
+      <section class="card span-8">
+        <h3>تواصل معنا</h3>
+       <a href="https://www.tiktok.com/@mehdimokkdes?lang=fr" target="_blank" 
+   style="text-decoration:none; margin:0 10px;">
+  <img src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338432_1280.png" 
+       alt="TikTok" width="32" height="32" 
+       style="vertical-align:middle;">
+</a>
+
+
+        <p class="muted">لأي استفسار أو شراكة، راسلنا على: <a href="sihammouelmehdi@gmail.com">sihammouelmehdi@gmail.com</a> أو واتساب: <a href="tel:+213556164550">+213 556164560</a></p>
+      </section>
+    </div>
+    
+
+    <footer>
+      <div class="container">
+        
+        © <span id="year"></span>   تبرّع الحياة — منصة غير ربحية.تصميم طالب مقدس سي حمو المهدي 
+      </div>
+      
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <dialog id="modal" style="border:none;border-radius:16px;padding:0;max-width:520px;width:95%">
+    <div style="background:#0b1223;color:var(--text);padding:20px;border:1px solid rgba(255,255,255,.08);border-radius:16px;">
+      <h3 style="margin-top:0">تم استلام بياناتك 🙏</h3>
+      <p class="muted" id="modalMsg">شكرًا لمبادرتك الإنسانية. سنعود إليك قريبًا.</p>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="btn" onclick="closeModal()">حسنًا</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // سنة الحقوق
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const modal = document.getElementById('modal');
+    const modalMsg = document.getElementById('modalMsg');
+
+    function openModal(msg){ modalMsg.textContent = msg; modal.showModal(); }
+    function closeModal(){ modal.close(); }
+
+     // معالجة نموذج المتبرعين بالدم
+document.getElementById('donorForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const f = e.target;
+  const data = {
+    full_name: f.name.value.trim(),
+    phone: f.phone.value.trim(),
+    blood_type: f.bloodType.value,
+    wilaya: f.city.value.trim(),
+    availability: f.availability.value,
+    notes: f.notes.value.trim(),
+    ts: new Date().toISOString()
+  };
+
+  if(!data.full_name || !data.phone || !data.blood_type || !data.wilaya){
+    return openModal('يرجى تعبئة الحقول المطلوبة.');
+  }
+
+  saveDonor(data);
+  f.reset();
+  openModal('شكراً لتسجيلك كمتبرّع بالدم. سنقوم بالتواصل عند الحاجة في منطقتك.');
+});
+
+// البحث عن المتبرعين
+document.getElementById('searchForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const type = document.getElementById('needBloodType').value;
+  const city = document.getElementById('needCity').value.trim();
+  openModal('جاري  البحث عن تطابق بياناتك…'); // تظهر النافذة مباشرة
+
+  try {
+    const res = await fetch(`https://script.google.com/macros/s/AKfycbyaG-XqQF26ERgL9VCwxHi_AoUWHI1sWq4YW5IZDGabY6q6h-rcdl_SNmrrEOaLP60rUw/exec?blood_type=${encodeURIComponent(type)}&wilaya=${encodeURIComponent(city)}`);
+    const result = await res.json();
+    const box = document.getElementById('results');
+
+    if(result.results.length === 0){
+      openModal('لا توجد نتيجة مطابقة، ابحث في ولاية قريبة لك.');
+      box.innerHTML = '';
+      return;
+    }
+
+    box.innerHTML = result.results.map(d => `
+      <div style="padding:10px;border:1px solid rgba(255,255,255,.08);border-radius:12px;margin-top:8px">
+        <div><strong>${d.full_name}</strong> — ${d.blood_type}</div>
+        <div class="help">${d.wilaya} · ${d.availability}</div>
+        <div class="help">اتصال: ${d.phone}</div>
+      </div>
+    `).join('');
+
+  } catch(err) {
+    openModal('❌ فشل الاتصال بالخادم');
+  }
+});
+
+
+  </script>
+  <script>
+  async function updateDonorCount() {
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbyaG-XqQF26ERgL9VCwxHi_AoUWHI1sWq4YW5IZDGabY6q6h-rcdl_SNmrrEOaLP60rUw/exec");
+      const data = await res.json();
+      if(data.status === "success"){
+        document.getElementById('donorNumber').textContent = data.results.length;
+      } else {
+        console.error("خطأ في جلب البيانات:", data.message);
+      }
+    } catch(err) {
+      console.error("فشل الاتصال بالخادم:", err);
+    }
+  }
+
+  updateDonorCount();
+  setInterval(updateDonorCount,2500)
+</script>
+
+</body>
+</html>
+
+ 
+
+
+
