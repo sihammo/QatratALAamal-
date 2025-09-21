@@ -481,7 +481,7 @@ document.getElementById('searchForm').addEventListener('submit', async (e) => {
     const box = document.getElementById('results');
 
     if(result.results.length === 0){
-      openModal('لا توجد نتيجة مطابقة، ابحث في ولاية قريبة لك.');
+      openModal('لا توجد نتيجة مطابقة، ابحث في ولاية قريبة لك.او جرب كتاية ولايتك بالفرنسية ');
       box.innerHTML = '';
       return;
     }
@@ -527,13 +527,9 @@ document.getElementById('searchForm').addEventListener('submit', async (e) => {
   updateDonorCount();
   setInterval(updateDonorCount,2500)
 </script>
-
-
 </body>
 </html>
 
  
-
-
 
 
