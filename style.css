@@ -28,6 +28,21 @@ header { position: sticky; top:0; z-index:50; backdrop-filter: blur(10px); backg
 .btn:hover { transform:translateY(-2px); }
 .btn.primary { background: var(--primary); border-color:transparent; }
 .btn.primary:hover { background: var(--primary-600); }
+/* باقي CSS السابق هنا ... */
+
+/* تعديل أزرار الهواتف */
+@media (max-width: 640px) {
+  .cta-row {
+    flex-direction: column; /* الأزرار فوق بعضها */
+    gap: 12px;              /* مسافة بين الأزرار */
+  }
+
+  .cta-row .btn {
+    width: 100%;             /* عرض كامل للزر */
+    text-align: center;      /* توسيط النص */
+  }
+}
+
 
 /* Hero */
 .hero { padding:50px 0 20px; text-align:center; }
@@ -89,3 +104,4 @@ dialog { border:none; border-radius:16px; padding:0; max-width:520px; width:95%;
   max-width: 80%;
   line-height: 1.4;
 }
+
